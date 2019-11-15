@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<hr>
+<hr>
+<p>
+    {{ course_list }}
+</p>
+<hr>
+<p>{{ req }}</p>
+<hr>
+<form method="post" style="margin: auto" enctype="multipart/form-data">
+    <p>
+        <label>课程名称:</label>
+        <input type="text" name="c_name">
+    </p>
+    <p>
+        <label>课程时长:</label>
+        <input type="number" name="c_time_number">
+    </p>
+    <p>
+        <label>课程标签:</label>
+        <select name="label" id="" cols="30" rows="10">
+            {% for label in label_list %}
+            <option value="{{ label.id }}">{{ label.l_name }}</option>
+            {% endfor %}
+        </select>
+    </p>
+    <p>
+        <label>课程描述:</label>
+        <textarea name="description" id="" cols="30" rows="10"></textarea>
+    </p>
+    <p>
+        <label>课程logo:</label>
+        <input type="file" name="logo">
+    </p>
+    <p>
+        <input type="submit" value="提交">
+    </p>
+</form>
+<hr>
+<img src="/static/{{ course.picture }}" alt="课程图片">
+</body>
+</html>

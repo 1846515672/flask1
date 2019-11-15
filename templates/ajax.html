@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}
+ajax
+{% endblock %}
+{% block content %}
+                    <form class="navbar-banner layout-no-margin-top">
+                        <div class="form-group">
+                            <input class="form-control" id="username" type="text" placeholder="昵称">
+                            <div class="help-block text-left"></div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="email" type="email" placeholder="邮箱">
+                            <div class="help-block text-left"></div>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="password" type="password" placeholder="密码">
+                            <div class="help-block text-left"></div>
+                        </div>
+                        <button class="btn register" type="submit">加入实验楼</button>
+                    </form>
+{% endblock %}
+{% block script %}
+    <script src="/static/static/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+        $("#username").blur(
+            function(){
+                var value = $(this).val();
+                var url = "/ajax_user/?username="+value;
+                $.ajax({
+                    url: "",
+                    type: "",
+                    data: "",
+                    sucess: function (data) {
+                        if(data["is_user"]){
+                            content = "用户存在"
+                        }else{
+                            content = "用户不存在"
+                        }
+                        $("#error_message").text(content)
+                    },
+                    error: function(error){
+                        console.log(error)
+                    }
+                })
+            }
+        )
+    </script>
+{% endblock %}
